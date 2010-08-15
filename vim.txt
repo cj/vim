@@ -1,0 +1,147 @@
+### VIM HELP
+
+# CTRL + L 
+Clears the search
+
+# CTRL + a
+Toggle project draw
+
+# CTRL + t
+Textmate search for file
+
+# Show most recent files
+\r
+
+# search for directory
+\d
+
+# Toggle folds open/close
+F9
+
+# Search and replace in visual mode
+:s/foo/bar/g
+
+# Change the syntax highlighting of your choice
+set ft=html
+
+# Search
+
+find closing/open tags hit shift %
+
+<D-c>:vimgrep /phrase/ **
+:clist
+:copen
+
+F8 to show ALL PHPP CONSTANTS
+F9 to open/close folds
+
+// search / replace
+juque: ceej :%s/alfa/beta/g
+
+graywh: ceej, :h find-replace
+
+#copy full path of file to clip board
+let @+=expand('%:p')
+
+grep -rni "phrase" .
+
+:GitAdd <file>
+git-add <file> or current file if not specified.
+:GitCommit <args>
+git-commit.
+:GitStatus
+Show git-status of current file or repository.
+:GitLog
+Show git-log of current file or repository.
+:GitCheckout <args>
+git-checkout. Completes git commits.
+:GitDiff <args>
+git-diff. Completes git commits.
+:GitPush <args>
+git-push. Does a "git push" and shows the output
+:GitBlame
+git-blame. Shows who is responsible for a change
+:GitCatFile <args>
+git-cat-file.
+:Git <args>
+Does any git command.
+:GitVimDiffMerge
+Experimental. Call this command on unmerged file to enter vimdiff mode.
+:GitVimDiffMergeDone
+Call this command after merging.
+
+
+
+
+This plugin show branches information on the status line. 
+To install, just put this file on ~/.vim/plugins and set your status line: 
+
+:set statusline=%{GitBranchInfoString} 
+
+Of course you can append this configuration to an existing one and make all 
+the customization you want on the status line, like: 
+
+:set statusline=%#ErrorMsg#%{GitBranchInfoString}%#StatusLine# 
+
+The command above will show the Git branches info on the same color as the 
+error messages. You can choose any color scheme you want to. Use 
+
+:help highlight-groups 
+
+to check for some other options. 
+
+There are some customization on the result string based on existing variables 
+like: 
+
+let g:git_branch_status_head_current=1 
+This will show just the current head branch name 
+
+let g:git_branch_status_text="text" 
+This will show 'text' before the branches. If not set ' Git ' (with a trailing 
+left space) will be displayed. 
+
+let g:git_branch_status_nogit="" 
+The message when there is no Git repository on the current dir 
+
+let g:git_branch_status_around="" 
+Characters to put around the branch strings. Need to be a pair or characters, 
+the first will be on the beginning of the branch string and the last on the 
+end. 
+
+let g:git_branch_status_ignore_remotes=1 
+Ignore the remote branches. If you don't want information about them, this can 
+make things works faster. 
+
+If you want to make your own customizations, you can use the GitBranchInfoTokens() 
+function. It returns an array with the current branch as the first element and 
+another array with the other branches as the second element, like: 
+
+:set statusline=%#ErrorMsg#%{GitBranchInfoTokens()[0]}%#StatusLine# 
+
+or 
+
+:set statusline=%#StatusLineNC#\ Git\ %#ErrorMsg#\ %{GitBranchInfoTokens()[0]}\ %#StatusLine#
+
+
+
+
+fugitive.vim
+I'm not going to lie to you; fugitive.vim may very well be the best Git wrapper of all time. Check out these features:
+
+View any blob, tree, commit, or tag in the repository with :Gedit (and :Gsplit, :Gvsplit, :Gtabedit, ...). Edit a file in the index and write to it to stage the changes. Use :Gdiff to bring up the staged version of the file side by side with the working tree version and use Vim's diff handling capabilities to stage a subset of the file's changes.
+
+Bring up the output of git status with :Gstatus. Use - to add/reset a file's changes, or p to add/reset --patch that mofo. And guess what :Gcommit does!
+
+:Gblame brings up an interactive vertical split with git blame output. Press enter on a line to reblame the file as it stood in that commit, or o to open that commit in a split.
+
+:Gmove does a git mv on a file and simultaneously renames the buffer. :Gremove does a git rm on a file and simultaneously deletes the buffer.
+
+Use :Ggrep to search the work tree (or any arbitrary commit) with git grep, skipping over that which is not tracked in the repository. :Glog loads all previous revisions of a file into the quickfix list so you can iterate over them and watch the file evolve!
+
+:Gread is a variant of git checkout -- filename that operates on the buffer rather than the filename. This means you can use u to undo it and you never get any warnings about the file changing outside Vim. :Gwrite writes to both the work tree and index versions of a file, making it like git add when called from a work tree file and like git checkout when called from the index or a blob in history.
+
+Add %{fugitive#statusline()} to 'statusline' to get an indicator with the current branch in (surprise!) your statusline.
+
+Oh, and of course there's :Git for running any arbitrary command.
+
+Like fugitive.vim? Follow the repository on GitHub and vote for it on vim.org.
