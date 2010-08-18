@@ -73,11 +73,26 @@ map <Leader>t :NERDTree<Enter>
 map <Leader>r :MRU<Enter>
 noremap <silent> <c-l> :nohls<CR><c-l>
 
+" Quick switch syntax
+" com! Html set ft=html
+" com! Php  set ft=php
+com! Html set ft=html<ENTER>set syntax=php
+com! Php  set ft=php<ENTER>set syntax=php
+
+map <Leader>h :set ft=html syntax=php<ENTER>
+map <Leader>p :set ft=php syntax=php<ENTER>
+
 " Press F9 to open/close folds
 inoremap <silent> <F9> <C-O>za
 nnoremap <silent> <F9> za
 onoremap <silent> <F9> <C-C>za
 vnoremap <silent> <F9> zf
+
+" Refreshes ctrl + t file search
+map <special> <F12> :ruby finder.rescan!<ENTER> 
+
+set undofile
+" set undodir .
 
 " CoffeScript
 " Disable error for spacing
@@ -121,5 +136,17 @@ autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+
+ " Delimitmate {
+au FileType * let b:delimitMate_autoclose = 1
+
+" If using html auto complete (complete closing tag)
+        au FileType xml,html,xhtml,php let b:delimitMate_matchpairs = "(:),[:],{:}"
+" }
+
+" AutoCloseTag {
+" Make it so AutoCloseTag works for xml and xhtml files as well
+au FileType xhtml,xml,php ru ftplugin/html/autoclosetag.vim
+" }
 
 " au FileType php set omnifunc=phpcomplete#CompletePHP
