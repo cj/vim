@@ -117,7 +117,7 @@ let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1
 " let g:NeoComplCache_EnableCamelCaseCompletion = 1
 let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_min_syntax_length = 2
 
 " make tab in visual mode indent code
 vmap <tab> >gv
