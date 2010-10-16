@@ -10,6 +10,8 @@ filetype plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
 
+set autoread                      " Automatically reads the file again"
+
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
@@ -52,6 +54,7 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 " Or use vividchalk
 "colorscheme topfunky-lightA  AQQQ
 colorscheme twilight
+"colorscheme IR_Black
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -69,9 +72,12 @@ noremap <silent> <c-a> :NERDTreeToggle<Enter>
 noremap <silent> <c-t> :FuzzyFinderTextMate<Enter>
 map <Leader>f :FuzzyFinderTextMate<Enter>
 map <Leader>d :FufDir<Enter>
-map <Leader>t :NERDTree<Enter>
+map <Leader>t :ConqueTerm zsh -l<Enter>
 map <Leader>r :MRU<Enter>
 noremap <silent> <c-l> :nohls<CR><c-l>
+
+" Rainbows!
+nmap <leader>R :RainbowParenthesesToggle<CR>
 
 " Quick switch syntax
 " com! Html set ft=html
@@ -89,7 +95,7 @@ onoremap <silent> <F9> <C-C>za
 vnoremap <silent> <F9> zf
 
 " Refreshes ctrl + t file search
-map <special> <F12> :ruby finder.rescan!<ENTER> 
+map <special> <F12> :ruby finder.rescan!<ENTER>
 
 set undofile
 " set undodir .
@@ -118,6 +124,14 @@ let g:neocomplcache_enable_smart_case = 1
 " let g:NeoComplCache_EnableCamelCaseCompletion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_enable_auto_select = 1
+
+nmap <Down> <c-Down>
+" Make it so you can't use arrows
+" nmap <Left>     <Esc>:echo "You should have typed h instead"<CR>
+" nmap <Right>    <Esc>:echo "You should have typed l instead"<CR>
+" nmap <Up>       <Esc>:echo "You should have typed k instead"<CR>
+" nmap <Down>     <Esc>:echo "You should have typed j instead"<CR>
 
 " make tab in visual mode indent code
 vmap <tab> >gv
@@ -141,7 +155,7 @@ autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 au FileType * let b:delimitMate_autoclose = 1
 
 " If using html auto complete (complete closing tag)
-        au FileType xml,html,xhtml,php let b:delimitMate_matchpairs = "(:),[:],{:}"
+au FileType xml,html,xhtml,php let b:delimitMate_matchpairs = "(:),[:],{:}"
 " }
 
 " AutoCloseTag {

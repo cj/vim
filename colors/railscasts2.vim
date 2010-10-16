@@ -1,13 +1,13 @@
 " Vim color scheme
 "
 " Name:        railscast.vim
-" Maintainer:  Josh O'Rourke <jorourke23@gmail.com> 
+" Maintainer:  Josh O'Rourke <jorourke23@gmail.com>
 " License:     public domain
 "
 " A GUI Only port of the RailsCasts TextMate theme [1] to Vim.
 " Some parts of this theme were borrowed from the well-documented Lucius theme [2].
-" 
-" [1] http://railscasts.com/about 
+"
+" [1] http://railscasts.com/about
 " [2] http://www.vim.org/scripts/script.php?script_id=2536
 
 set background=dark
@@ -15,7 +15,7 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = "railscasts"
+let g:colors_name = "railscasts2"
 
 " Colors
 " Brown        #BC9458
