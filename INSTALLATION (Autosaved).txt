@@ -1,0 +1,21 @@
+To use:
+
+* Copy the dotvim-basic or dotvim-full-featured directory to ~/.vim
+* Symlink the vimrc and gvimrc files to ~/.vimrc and ~/.gvimrc
+
+blank:~ blank$ ln -s ~/dropbox/sd/vim ~/.vim
+blank:~ blank$ ln -s ~/dropbox/sd/vim/vimrc ~/.vimrc
+blank:~ blank$ ln -s ~/dropbox/sd/vim/gvimrc ~/.gvimrc
+blank:~ blank$ ln -s ~/dropbox/sd/vim/jsl /usr/local/bin/jsl
+blank:~ blank$ ln -s ~/dropbox/sd/vim/jsl.conf /usr/local/bin/jsl.conf
+blank:~ blank$ ln -s ~/dropbox/sd/vim/zprofile ~/.zprofile
+blank:~ blank$ ln -s ~/dropbox/sd/vim/zsh ~/.zsh
+blank:~ blank$ ln -s ~/dropbox/sd/vim/zshrc ~/.zshrc
+
+ln -s ~/vim/vim ~/.vim
+ln -s ~/vim/vimrc ~/.vimrc
+ln -s ~/vim/gvimrc ~/.gvimrc
+ln -s ~/vim/jsl /usr/local/bin/jsl
+ln -s ~/vim/jsl.conf /usr/local/bin/jsl.conf
+
+
