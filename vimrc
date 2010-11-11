@@ -51,13 +51,17 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
+"
+" CTRL + x CTRL + o brings up code completion for functions.
+"
+
 " Or use vividchalk
 "colorscheme topfunky-lightA  AQQQ
 colorscheme twilight
 "colorscheme IR_Black
 
 " Tab mappings.
-map <leader>tt :tabnew<cr>
+"map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 map <leader>to :tabonly<cr>
@@ -72,9 +76,12 @@ noremap <silent> <c-a> :NERDTreeToggle<Enter>
 noremap <silent> <c-t> :FuzzyFinderTextMate<Enter>
 map <Leader>f :FuzzyFinderTextMate<Enter>
 map <Leader>d :FufDir<Enter>
-map <Leader>t :ConqueTerm zsh -l<Enter>
+"map <Leader>t :ConqueTerm zsh -l<Enter>
+map <Leader>t :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
 noremap <silent> <c-l> :nohls<CR><c-l>
+map <Leader>t> :Align =><Enter>
+
 
 " Rainbows!
 nmap <leader>R :RainbowParenthesesToggle<CR>
@@ -119,12 +126,19 @@ map <Leader>sn :setlocal nospell<CR>
 "
 " Configure Neocomplcache
 "
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-" let g:NeoComplCache_EnableCamelCaseCompletion = 1
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_enable_auto_select = 1
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_smart_case = 1
+" " let g:NeoComplCache_EnableCamelCaseCompletion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
+" let g:neocomplcache_min_syntax_length = 2
+" let g:neocomplcache_enable_auto_select = 1
+
+let g:tlist_php_settings = 'php;c:class;f:function'
+
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
+
 
 nmap <Down> <c-Down>
 " Make it so you can't use arrows
@@ -149,18 +163,19 @@ vmap <s-tab> <gv
 autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-
- " Delimitmate {
-au FileType * let b:delimitMate_autoclose = 1
-
-" If using html auto complete (complete closing tag)
-au FileType xml,html,xhtml,php let b:delimitMate_matchpairs = "(:),[:],{:}"
-" }
-
-" AutoCloseTag {
-" Make it so AutoCloseTag works for xml and xhtml files as well
-au FileType xhtml,xml,php ru ftplugin/html/autoclosetag.vim
-" }
-
+" autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+"
+"  " Delimitmate {
+" au FileType * let b:delimitMate_autoclose = 1
+"
+" " If using html auto complete (complete closing tag)
+au FileType xml,html,xhtml let b:AutoClosePairs = {'<': '>', '?': '?', '(': ')', '{': '}', '[': ']', '"': '"', "'": "'"}
+" " }
+"
+" " AutoCloseTag {
+" " Make it so AutoCloseTag works for xml and xhtml files as well
+" au FileType xhtml,xml,php ru ftplugin/html/autoclosetag.vim
+" " }
+"
 " au FileType php set omnifunc=phpcomplete#CompletePHP
+set expandtab

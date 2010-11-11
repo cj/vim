@@ -42,7 +42,7 @@ F8 to show ALL PHPP CONSTANTS
 F9 to open/close folds
 
 // search / replace
-juque: ceej :%s/alfa/beta/g
+juque: ceej alester:
 
 graywh: ceej, :h find-replace
 
