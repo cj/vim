@@ -209,6 +209,7 @@ let g:SuperTabMappingForward = "<leader><space>"
   let g:DisableAutoPHPFolding = 0
 " }
 " Firstly, disable the netrw plugin
+let g:NERDTreeHijackNetrw = 0
 let g:loaded_netrw       = 1 " Disable netrw
 let g:loaded_netrwPlugin = 1 " Disable netrw
 
