@@ -11,6 +11,7 @@ filetype plugin indent on         " Turn on file type detection.
 runtime macros/matchit.vim        " Load the matchit plugin.
 
 set autoread                      " Automatically reads the file again"
+set autowrite                     " Automatically write dity buffers on close
 
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
@@ -50,6 +51,7 @@ set expandtab                    " Use spaces instead of tabs
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
 
 "
 " CTRL + x CTRL + o brings up code completion for functions.
@@ -178,4 +180,31 @@ au FileType xml,html,xhtml let b:AutoClosePairs = {'<': '>', '?': '?', '(': ')',
 " " }
 "
 " au FileType php set omnifunc=phpcomplete#CompletePHP
-set expandtab
+
+" Supertab {
+  "let g:SuperTabDefaultCompletionType = "context"
+  let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+" }
+  set history=1000  				" Store a ton of history (default is 20)
+  "set spell 		 	        	" spell checking on
+
+  	" SnipMate {
+		" Setting the author var
+		let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+		" Shortcut for reloading snippets, useful when developing
+		nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+	" }
+  " For when you forget to sudo.. Really Write the file.
+	cmap w!! w !sudo tee % >/dev/null
+" }
+"
+let g:SuperTabMappingForward = "<leader><space>"
+
+"""
+" SEE WHAT FILE IS SETTING cmdheight
+"""
+":verbose set cmdheight
+
+" PIV {
+  let g:DisableAutoPHPFolding = 0
+" }

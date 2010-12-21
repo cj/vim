@@ -4,20 +4,20 @@
 " VERSION:  1.2, for Vim 7.0
 " LICENSE:
 " Conque - pty interaction in Vim
-" Copyright (C) 2009-2010 Nico Raffo 
+" Copyright (C) 2009-2010 Nico Raffo
 "
 " MIT License
-" 
+"
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
 " in the Software without restriction, including without limitation the rights
 " to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 " copies of the Software, and to permit persons to whom the Software is
 " furnished to do so, subject to the following conditions:
-" 
+"
 " The above copyright notice and this permission notice shall be included in
 " all copies or substantial portions of the Software.
-" 
+"
 " THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 " IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 " FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -106,12 +106,12 @@ function! conque_term#open(...) "{{{
         let l:config = '{"color":' . string(g:ConqueTerm_Color) . ',"TERM":"' . g:ConqueTerm_TERM . '"}'
         execute 'python ' . g:ConqueTerm_Var . ' = Conque()'
         execute "python " . g:ConqueTerm_Var . ".open('" . conque_term#python_escape(command) . "', " . l:config . ")"
-    catch 
+    catch
         echohl WarningMsg | echomsg "Unable to open command: " . command | echohl None
         return 0
     endtry
 
-    " set buffer mappings and auto commands 
+    " set buffer mappings and auto commands
     if is_buffer
         call conque_term#set_mappings('start')
     endif
@@ -130,7 +130,7 @@ endfunction "}}}
 
 " open(), but no buffer
 function! conque_term#subprocess(command) " {{{
-    
+
     let t_obj = conque_term#open(a:command, [], 0, 0)
     if !exists('b:ConqueTerm_Var')
         call conque_term#on_blur()
@@ -151,7 +151,7 @@ function! conque_term#set_buffer_settings(command, pre_hooks) "{{{
     " showcmd gets altered by nocompatible
     let sc_save = &showcmd
 
-    " buffer settings 
+    " buffer settings
     setlocal nocompatible      " conque won't work in compatible mode
     setlocal nopaste           " conque won't work in paste mode
     setlocal buftype=nofile    " this buffer is not a file, you can't save it
@@ -485,7 +485,7 @@ function! conque_term#on_focus() " {{{
     if s:NeoComplCache_WasEnabled == 2
         NeoComplCacheLock
     endif
- 
+
     if g:ConqueTerm_ReadUnfocused == 1
         autocmd! ConqueTerm CursorHoldI *
         autocmd! ConqueTerm CursorHold *
@@ -508,7 +508,7 @@ function! conque_term#on_blur() " {{{
     if exists('s:NeoComplCache_WasEnabled') && exists(':NeoComplCacheUnlock') && s:NeoComplCache_WasEnabled == 2
         NeoComplCacheUnlock
     endif
- 
+
     " reset poll interval
     if g:ConqueTerm_ReadUnfocused == 1
         set updatetime=1000
@@ -552,7 +552,7 @@ function! s:term_obj.read(...) dict " {{{
     let read_time = get(a:000, 0, 1)
     let update_buffer = get(a:000, 1, self.is_buffer)
 
-    if update_buffer 
+    if update_buffer
         let up_py = 'True'
     else
         let up_py = 'False'
@@ -573,7 +573,7 @@ function! s:term_obj.read(...) dict " {{{
     " ftw!
     python << EOF
 if conque_tmp:
-    conque_tmp = re.sub('\\\\', '\\\\\\\\', conque_tmp) 
+    conque_tmp = re.sub('\\\\', '\\\\\\\\', conque_tmp)
     conque_tmp = re.sub('"', '\\\\"', conque_tmp)
     vim.command('let output = "' + conque_tmp + '"')
 EOF
@@ -642,7 +642,7 @@ function! conque_term#get_instance(...) " {{{
     let buf_num = get(a:000, 0, 0)
 
     if exists('s:terminals[buf_num]')
-        
+
     elseif exists('b:ConqueTerm_Var')
         let buf_num = b:ConqueTerm_Idx
     else
@@ -691,8 +691,8 @@ CONQUE_CTL = {
 #    14 : 'so',  # shift out
 #    15 : 'si'   # shift in
 
-# Escape sequences 
-CONQUE_ESCAPE = { 
+# Escape sequences
+CONQUE_ESCAPE = {
     'm':'font',
     'J':'clear_screen',
     'K':'clear_line',
@@ -751,7 +751,7 @@ CONQUE_ESCAPE_QUESTION = {
 
 CONQUE_ESCAPE_HASH = {
     '8':'screen_alignment_test'
-} 
+}
 #    '3':'double_height_top',
 #    '4':'double_height_bottom',
 #    '5':'single_height_single_width',
@@ -804,7 +804,7 @@ CONQUE_FONT = {
     105: {'description':'Set background color to Magenta', 'attributes': {'ctermbg':'13','guibg':'#990099'}, 'normal':False},
     106: {'description':'Set background color to Cyan', 'attributes': {'ctermbg':'14','guibg':'#009999'}, 'normal':False},
     107: {'description':'Set background color to White', 'attributes': {'ctermbg':'15','guibg':'#ffffff'}, 'normal':False}
-} 
+}
 # }}}
 
 # regular expression matching (almost) all control sequences
@@ -823,7 +823,7 @@ CONQUE_TABLE_OUTPUT   = re.compile("^\s*\|\s.*\s\|\s*$|^\s*\+[=+-]+\+\s*$")
 ###################################################################################################
 class Conque:
 
-    # CLASS PROPERTIES {{{ 
+    # CLASS PROPERTIES {{{
 
     # screen object
     screen          = None
@@ -983,13 +983,13 @@ class Conque:
 
                         pass
                     # }}}
-        
+
                 # check for title match {{{
                 elif CONQUE_SEQ_REGEX_TITLE.match(s):
 
                     self.change_title(s[2], s[4:-1])
                     # }}}
-        
+
                 # check for hash match {{{
                 elif CONQUE_SEQ_REGEX_HASH.match(s):
 
@@ -999,7 +999,7 @@ class Conque:
 
                         pass
                     # }}}
-                
+
                 # check for other escape match {{{
                 elif CONQUE_SEQ_REGEX_ESC.match(s):
 
@@ -1009,7 +1009,7 @@ class Conque:
 
                         pass
                     # }}}
-                
+
                 # else process plain text {{{
                 else:
                     self.plain_text(s)
@@ -1018,7 +1018,7 @@ class Conque:
         # check window size
         if set_cursor:
           self.screen.set_cursor(self.l, self.c)
-        
+
         # we need to set the cursor position
         self.cursor_set = False
 
@@ -1054,7 +1054,7 @@ class Conque:
         # stop here if cursor doesn't need to be moved
         if self.cursor_set:
             return
-        
+
         # otherwise set cursor position
         self.screen.set_cursor(self.l, self.c)
         self.cursor_set = True
@@ -1223,7 +1223,7 @@ class Conque:
     def csi_font(self, csi): # {{{
         if not self.enable_colors:
             return
-        
+
         # defaults to 0
         if len(csi['vals']) == 0:
             csi['vals'] = [0]
@@ -1354,7 +1354,7 @@ class Conque:
         elif csi['val'] == 0:
             for l in range(self.bound(self.l + 1, 1, self.lines), self.lines + 1):
                 self.screen[l] = ''
-            
+
             # clear end of current line
             self.csi_clear_line(self.parse_csi('K'))
 
@@ -1441,16 +1441,16 @@ class Conque:
 
     def csi_set(self, csi): # {{{
         # 132 cols
-        if csi['val'] == 3: 
+        if csi['val'] == 3:
             self.csi_clear_screen(self.parse_csi('2J'))
             self.working_columns = 132
 
         # relative_origin
-        elif csi['val'] == 6: 
+        elif csi['val'] == 6:
             self.absolute_coords = False
 
         # set auto wrap
-        elif csi['val'] == 7: 
+        elif csi['val'] == 7:
             self.autowrap = True
 
 
@@ -1459,16 +1459,16 @@ class Conque:
 
     def csi_reset(self, csi): # {{{
         # 80 cols
-        if csi['val'] == 3: 
+        if csi['val'] == 3:
             self.csi_clear_screen(self.parse_csi('2J'))
             self.working_columns = 80
 
         # absolute origin
-        elif csi['val'] == 6: 
+        elif csi['val'] == 6:
             self.absolute_coords = True
 
         # reset auto wrap
-        elif csi['val'] == 7: 
+        elif csi['val'] == 7:
             self.autowrap = False
 
 
@@ -1564,7 +1564,7 @@ class Conque:
 
         # check window size
         self.update_window_size()
-        
+
         # we need to set the cursor position
         self.cursor_set = False
 
@@ -1580,7 +1580,7 @@ class Conque:
 
     ###############################################################################################
     # Utility {{{
-    
+
     def parse_csi(self, s): # {{{
         attr = { 'key' : s[-1], 'flag' : '', 'val' : 1, 'vals' : [] }
 
@@ -1604,7 +1604,7 @@ class Conque:
 
         if len(attr['vals']) == 1:
             attr['val'] = int(attr['vals'][0])
-            
+
         return attr
         # }}}
 
@@ -1620,7 +1620,7 @@ class Conque:
 
     def xterm_to_rgb(self, color_code): # {{{
         if color_code < 16:
-            ascii_colors = ['000000', 'CD0000', '00CD00', 'CDCD00', '0000EE', 'CD00CD', '00CDCD', 'E5E5E5', 
+            ascii_colors = ['000000', 'CD0000', '00CD00', 'CDCD00', '0000EE', 'CD00CD', '00CDCD', 'E5E5E5',
                    '7F7F7F', 'FF0000', '00FF00', 'FFFF00', '5C5CFF', 'FF00FF', '00FFFF', 'FFFFFF']
             return ascii_colors[color_code]
 
@@ -1663,7 +1663,7 @@ class ConqueSubprocess:
 
     # process id
     pid = 0
-    
+
     # stdout+stderr file descriptor
     fd = None
 
@@ -1879,7 +1879,7 @@ class ConqueScreen(object):
 
         l = self.screen_top + line - 2
         self.buffer[l:l] = [ value ]
-    
+
     # }}}
     # }}}
 
@@ -1955,7 +1955,7 @@ class ConqueScreen(object):
     def scroll_to_bottom(self): # {{{
         vim.current.window.cursor = (len(self.buffer) - 1, 1)
     # }}}
-        
+
     def align(self): # {{{
         # align bottom of buffer to bottom of screen
         vim.command('normal ' + str(self.screen_height) + 'kG')

@@ -10,3 +10,5 @@ endfunction
 
 set errorformat+=\"%f\"\\,%l\\,%c\\,%t%*[a-zA-Z]\\,\"%m\"
 command! Phpcs execute RunPhpcs()
+
+set expandtab
