@@ -203,8 +203,15 @@ let g:SuperTabMappingForward = "<leader><space>"
 """
 " SEE WHAT FILE IS SETTING cmdheight
 """
-":verbose set cmdheight
+":verbose set cmdheight?
 
 " PIV {
   let g:DisableAutoPHPFolding = 0
 " }
+" Firstly, disable the netrw plugin
+let g:loaded_netrw       = 1 " Disable netrw
+let g:loaded_netrwPlugin = 1 " Disable netrw
+
+" Next, add this to your .vimrc
+au VimEnter * :NERDTreeToggle
+au VimEnter * :wincmd p
