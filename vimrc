@@ -216,3 +216,5 @@ let g:loaded_netrwPlugin = 1 " Disable netrw
 " Next, add this to your .vimrc
 au VimEnter * :NERDTreeToggle
 au VimEnter * :wincmd p
+
+map <Leader>w :set wrap<Enter>
