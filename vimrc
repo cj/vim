@@ -224,3 +224,7 @@ au VimEnter * :wincmd p
 au VimEnter * :set wrap
 
 map <Leader>w :set wrap<Enter>
+" Compile coffee files on save
+au BufWrite *.coffee !coffee -c %:p
+" Always open files in \"Edit Anyway\"
+set shortmess+=A
