@@ -43,3 +43,6 @@
 [submodule "bundle/vim-tcomment"]
 	path = bundle/vim-tcomment
 	url = https://github.com/tsaleh/vim-tcomment.git
+[submodule "bundle/checksyntax"]
+	path = bundle/checksyntax
+	url = https://github.com/tomtom/checksyntax_vim.git

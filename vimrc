@@ -103,6 +103,11 @@ nnoremap <silent> <F9> za
 onoremap <silent> <F9> <C-C>za
 vnoremap <silent> <F9> zf
 
+" Press F10 open all folds
+nnoremap <silent> <F10> zR
+" Press F10 close all folds
+nnoremap <silent> <F11> zM
+
 " Refreshes ctrl + t file search
 map <special> <F12> :ruby finder.rescan!<ENTER>
 
@@ -216,5 +221,6 @@ let g:loaded_netrwPlugin = 1 " Disable netrw
 " Next, add this to your .vimrc
 au VimEnter * :NERDTreeToggle
 au VimEnter * :wincmd p
+au VimEnter * :set wrap
 
 map <Leader>w :set wrap<Enter>
