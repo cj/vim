@@ -1,7 +1,9 @@
-
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = http://github.com/Raimondi/delimitMate.git
+[submodule "bundle/gist-vim"]
+	path = bundle/gist-vim
+	url = http://github.com/mattn/gist-vim.git
