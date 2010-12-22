@@ -22,3 +22,6 @@
 [submodule "bundle/snipmate-snippets"]
 	path = bundle/snipmate-snippets
 	url = git://github.com/spf13/snipmate-snippets.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/ervandew/supertab.git
