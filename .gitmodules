@@ -34,3 +34,6 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = git://github.com/spf13/vim-markdown.git
+[submodule ".vim/bundle/gist-vim"]
+	path = .vim/bundle/gist-vim
+	url = http://github.com/mattn/gist-vim.git
