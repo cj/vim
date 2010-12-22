@@ -16,3 +16,9 @@
 [submodule "bundle/piv"]
 	path = bundle/piv
 	url = git://github.com/spf13/PIV.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git://github.com/spf13/snipmate.vim.git
+[submodule "bundle/snipmate-snippets"]
+	path = bundle/snipmate-snippets
+	url = git://github.com/spf13/snipmate-snippets.git
