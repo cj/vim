@@ -32,7 +32,7 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
-set wrap                          " Turn on line wrapping.
+set wrap linebreak nolist                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
@@ -73,6 +73,12 @@ map <leader>tc :tabclose<cr>
 " map <leader>tf :tabfirst<cr>
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
+map <C-Left> :tabprevious<cr>
+map <C-Right> :tabnext<cr>
+nmap <C-Left> :tabprevious<cr>
+nmap <C-Right> :tabnext<cr>
+vmap <C-Left> :tabprevious<cr>
+vmap <C-Right> :tabnext<cr>
 
 " Uncomment to use Jamis Buck's file opening plugin
 noremap <silent> <c-a> :NERDTreeToggle<Enter>
@@ -150,7 +156,7 @@ nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 
 
-nmap <Down> <c-Down>
+" nmap <Down> <c-Down>
 " Make it so you can't use arrows
 " nmap <Left>     <Esc>:echo "You should have typed h instead"<CR>
 " nmap <Right>    <Esc>:echo "You should have typed l instead"<CR>
@@ -170,7 +176,7 @@ vmap <s-tab> <gv
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
-autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+autocmd FileType css, php, coffee, html, xhtml, javascript  setlocal foldmethod=indent shiftwidth=2 tabstop=2 expandtab
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 " autocmd BufNewFile,BufRead *_spec.rb compiler rspec
@@ -221,9 +227,9 @@ let g:loaded_netrwPlugin = 1 " Disable netrw
 " Next, add this to your .vimrc
 au VimEnter * :NERDTreeToggle
 au VimEnter * :wincmd p
-au VimEnter * :set wrap
+au VimEnter * :set wrap linebreak nolist
 
-map <Leader>w :set wrap<Enter>
+map <Leader>w :set wrap linebreak nolist<Enter>
 " Compile coffee files on save
 au BufWrite *.coffee !coffee -c %:p
 " Always open files in \"Edit Anyway\"
@@ -241,3 +247,16 @@ let g:gist_detect_filetype = 1
 " Press ,v to edit vimrc
 let mapleader = ","
 nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
+
+" Source the vimrc file after saving it
+au BufWrite .vimrc source $MYVIMRC
