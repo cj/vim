@@ -32,7 +32,8 @@ set ruler                         " Show cursor position.
 set incsearch                     " Highlight matches as you type.
 set hlsearch                      " Highlight matches.
 
-set wrap linebreak nolist                          " Turn on line wrapping.
+" set wrap linebreak nolist                          " Turn on line wrapping.
+set wrap nolist                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
 
 set title                         " Set the terminal's title
@@ -176,7 +177,7 @@ vmap <s-tab> <gv
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
-autocmd FileType css, php, coffee, html, xhtml, javascript  setlocal foldmethod=indent shiftwidth=2 tabstop=2 expandtab
+autocmd FileType css setlocal foldmethod=indent
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 " autocmd BufNewFile,BufRead *_spec.rb compiler rspec
@@ -227,9 +228,11 @@ let g:loaded_netrwPlugin = 1 " Disable netrw
 " Next, add this to your .vimrc
 au VimEnter * :NERDTreeToggle
 au VimEnter * :wincmd p
-au VimEnter * :set wrap linebreak nolist
+" au VimEnter * :set wrap linebreak nolist
+au VimEnter * :set wrap nolist
 
-map <Leader>w :set wrap linebreak nolist<Enter>
+" map <Leader>w :set wrap linebreak nolist<Enter>
+map <Leader>w :set wrap nolist<Enter>
 " Compile coffee files on save
 au BufWrite *.coffee !coffee -c %:p
 " Always open files in \"Edit Anyway\"
