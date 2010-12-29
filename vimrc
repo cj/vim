@@ -245,8 +245,7 @@ let g:gist_detect_filetype = 1
 " let php_htmlInStrings=1 " to highlight HTML in string
 
 " Press ,v to edit vimrc
-let mapleader = ","
-nmap <leader>v :tabedit $MYVIMRC<CR>
+map <leader>ev :tabedit $MYVIMRC<CR>
 
 " Bubble single lines
 nmap <C-Up> [e
