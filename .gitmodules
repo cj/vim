@@ -46,3 +46,6 @@
 [submodule "bundle/php-folding"]
 	path = bundle/php-folding
 	url = https://github.com/shemerey/vim-phpfolding.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = https://github.com/msanders/snipmate.vim.git
