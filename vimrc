@@ -63,15 +63,16 @@ colorscheme twilight
 "colorscheme IR_Black
 
 " Tab mappings.
+map <leader>tn :tabnew<cr>
 "map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
+" map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+" map <leader>to :tabonly<cr>
+" map <leader>tn :tabnext<cr>
+" map <leader>tp :tabprevious<cr>
+" map <leader>tf :tabfirst<cr>
+" map <leader>tl :tablast<cr>
+" map <leader>tm :tabmove
 
 " Uncomment to use Jamis Buck's file opening plugin
 noremap <silent> <c-a> :NERDTreeToggle<Enter>
@@ -81,6 +82,7 @@ map <Leader>d :FufDir<Enter>
 "map <Leader>t :ConqueTerm zsh -l<Enter>
 map <Leader>t :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
+map <Leader>s :set expandtab<Enter>
 noremap <silent> <c-l> :nohls<CR><c-l>
 map <Leader>t> :Align =><Enter>
 
@@ -96,6 +98,7 @@ com! Php  set ft=php<ENTER>set syntax=php
 
 map <Leader>h :set ft=html syntax=php<ENTER>
 map <Leader>p :set ft=php syntax=php<ENTER>
+map <Leader>a :setf apache<ENTER>
 
 " Press F9 to open/close folds
 inoremap <silent> <F9> <C-O>za
@@ -210,9 +213,6 @@ let g:SuperTabMappingForward = "<leader><space>"
 """
 ":verbose set cmdheight?
 
-" PIV {
-  let g:DisableAutoPHPFolding = 0
-" }
 " Firstly, disable the netrw plugin
 let g:NERDTreeHijackNetrw = 0
 let g:loaded_netrw       = 1 " Disable netrw
@@ -228,3 +228,16 @@ map <Leader>w :set wrap<Enter>
 au BufWrite *.coffee !coffee -c %:p
 " Always open files in \"Edit Anyway\"
 set shortmess+=A
+
+" Auto copies Gists to clipboard
+let g:gist_clip_command = 'pbcopy'
+
+" Detect FileType from FileName
+let g:gist_detect_filetype = 1
+
+" let php_sql_query=1 " to highlight SQL syntax in strings
+" let php_htmlInStrings=1 " to highlight HTML in string
+
+" Press ,v to edit vimrc
+let mapleader = ","
+nmap <leader>v :tabedit $MYVIMRC<CR>

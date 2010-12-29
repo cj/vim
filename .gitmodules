@@ -13,15 +13,6 @@
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = http://github.com/spf13/nerdtree.git
-[submodule "bundle/piv"]
-	path = bundle/piv
-	url = git://github.com/spf13/PIV.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = git://github.com/spf13/snipmate.vim.git
-[submodule "bundle/snipmate-snippets"]
-	path = bundle/snipmate-snippets
-	url = git://github.com/spf13/snipmate-snippets.git
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = git://github.com/ervandew/supertab.git
@@ -46,3 +37,12 @@
 [submodule "bundle/checksyntax"]
 	path = bundle/checksyntax
 	url = https://github.com/tomtom/checksyntax_vim.git
+[submodule "bundle/github"]
+	path = bundle/github
+	url = https://github.com/TimothyKlim/github-vim.git
+[submodule "bundle/phpdoc"]
+	path = bundle/phpdoc
+	url = https://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git
+[submodule "bundle/php-folding"]
+	path = bundle/php-folding
+	url = https://github.com/shemerey/vim-phpfolding.git
