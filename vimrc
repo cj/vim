@@ -262,3 +262,5 @@ nmap gV `[v`]
 
 " Source the vimrc file after saving it
 au BufWrite .vimrc source $MYVIMRC
+
+let g:pdv_cfg_Author = "CJ Lazell <cjlazell@gmail.com>"
