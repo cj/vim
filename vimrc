@@ -61,16 +61,23 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 " Or use vividchalk
 "colorscheme topfunky-lightA  AQQQ
 colorscheme twilight
+" GRB: set the color scheme
+" if has("gui_running")
+"     :color twilight
+" else
+"     :color grb4
+" endif
 "colorscheme IR_Black
 
 " Tab mappings.
-map <leader>tn :tabnew<cr>
-"map <leader>tt :tabnew<cr>
+" map <leader>tn :tabnew<cr>
+set t_Co=256
+map <leader>to :tabnew<cr>
 " map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
 " map <leader>to :tabonly<cr>
-" map <leader>tn :tabnext<cr>
-" map <leader>tp :tabprevious<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
 " map <leader>tf :tabfirst<cr>
 " map <leader>tl :tablast<cr>
 " map <leader>tm :tabmove
@@ -81,6 +88,11 @@ nmap <C-Right> :tabnext<cr>
 vmap <C-Left> :tabprevious<cr>
 vmap <C-Right> :tabnext<cr>
 
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 " Uncomment to use Jamis Buck's file opening plugin
 noremap <silent> <c-a> :NERDTreeToggle<Enter>
 noremap <silent> <c-t> :FuzzyFinderTextMate<Enter>
@@ -90,8 +102,8 @@ map <Leader>d :FufDir<Enter>
 map <Leader>t :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
 map <Leader>s :set expandtab<Enter>
-noremap <silent> <c-l> :nohls<CR><c-l>
 map <Leader>t> :Align =><Enter>
+noremap <silent> <c-l> :nohls<CR><c-l>
 
 
 " Rainbows!
@@ -118,6 +130,7 @@ nnoremap <silent> <F10> zR
 " Press F10 close all folds
 nnoremap <silent> <F11> zM
 
+map <F8> <Esc>:EnableFastPHPFolds<Cr>
 " Refreshes ctrl + t file search
 map <special> <F12> :ruby finder.rescan!<ENTER>
 
@@ -151,6 +164,7 @@ map <Leader>sn :setlocal nospell<CR>
 " let g:neocomplcache_enable_auto_select = 1
 
 let g:tlist_php_settings = 'php;c:class;f:function'
+let Tlist_Show_One_File = 1
 
 inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-P> :call PhpDocSingle()<CR>
