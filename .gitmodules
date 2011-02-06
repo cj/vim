@@ -52,3 +52,9 @@
 [submodule "bundle/vim-unimpaired"]
 	path = bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/vim-syntax-todo"]
+	path = bundle/vim-syntax-todo
+	url = https://github.com/trapd00r/vim-syntax-todo.git
+[submodule "bundle/taskpaper"]
+	path = bundle/taskpaper
+	url = https://github.com/davidoc/taskpaper.vim.git

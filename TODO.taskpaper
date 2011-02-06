@@ -1,0 +1,23 @@
+FINISH:
+  - supplement/re-inspection tab. add approve supplements to file section http://screencast.com/t/tPXZ2pZcGc (file icon means it waiting sup approval http://www.screencast.com/users/bnaze13/folders/Jing/media/8a3623c7-3f96-45fc-b1d2-42fc1e9d551b) LOOK AT detail_files.php like 93
+  - When you create a new supplement make sure to do an update.  Update snapshot and refresh claim files
+  - build something into the email this claim feature that sends and email to debug@autoclaimsdirect.com if it couldn't be sent
+  - Fix IE7 css issues
+  - Add a date_time_last_login field to the user table (we currently have user_action field)
+  - check all local updating works
+  - Missing division filter for claim queue swillhite (not all companies will have division)
+  - ADD TO USER QUICK CHANGE AS DIRECTOR - rudyaguilar -
+  - add benchmarking to client side
+  - Look at search bar when browser is tiny
+  - look at login css http://screencast.com/t/YCHhXs2U1
+  - fix when updating phone numbers it also re formats them http://screencast.com/t/HKMP0gXYP
+  - flag claim as needing attention if they upload a file in COMPLETED status
+  - Fix pdf photo gallery @done(2011-02-06)
+  - Fix blank page in photo gallery pdf @done(2011-02-06)
+  - email this claim @done(2011-02-06)
+
+BUGS:
+  -
+
+IDEAS:
+  - we'll need to write some scripts eventually that disable users who haven't logged in for a long period of time

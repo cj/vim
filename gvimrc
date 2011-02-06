@@ -21,3 +21,9 @@ set ch=3                         " Stops vim asking you to continue every time
 " autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType c set omnifunc=ccomplete#Complete
+map <C-h>  : tabprevious<cr>
+map <C-l>  : tabnext<cr>
+nmap <C-h> : tabprevious<cr>
+nmap <C-l> : tabnext<cr>
+vmap <C-h> : tabprevious<cr>
+vmap <C-l> : tabnext<cr>

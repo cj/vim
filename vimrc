@@ -88,18 +88,18 @@ nmap <C-Right> :tabnext<cr>
 vmap <C-Left> :tabprevious<cr>
 vmap <C-Right> :tabnext<cr>
 
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
 
 " Uncomment to use Jamis Buck's file opening plugin
 noremap <silent> <c-a> :NERDTreeToggle<Enter>
 noremap <silent> <c-t> :FuzzyFinderTextMate<Enter>
-map <Leader>f :FuzzyFinderTextMate<Enter>
+"map <Leader>f :FuzzyFinderTextMate<Enter>
 map <Leader>d :FufDir<Enter>
 "map <Leader>t :ConqueTerm zsh -l<Enter>
-map <Leader>t :TlistToggle<Enter>
+map <Leader>f :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
 map <Leader>s :set expandtab<Enter>
 map <Leader>t> :Align =><Enter>
@@ -177,6 +177,13 @@ vnoremap <C-P> :call PhpDocRange()<CR>
 " nmap <Right>    <Esc>:echo "You should have typed l instead"<CR>
 " nmap <Up>       <Esc>:echo "You should have typed k instead"<CR>
 " nmap <Down>     <Esc>:echo "You should have typed j instead"<CR>
+
+nmap <Up> g<Up>
+nmap <Down> g<Down>
+
+" Auto move wrapped lines
+map k gk
+map j gj
 
 " make tab in visual mode indent code
 vmap <tab> >gv
@@ -263,6 +270,8 @@ let g:gist_detect_filetype = 1
 
 " Press ,v to edit vimrc
 map <leader>ev :tabedit $MYVIMRC<CR>
+" TODO list
+map <Leader>t :tabedit $HOME/.vim/TODO.taskpaper<ENTER>
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -278,3 +287,28 @@ nmap gV `[v`]
 au BufWrite .vimrc source $MYVIMRC
 
 let g:pdv_cfg_Author = "CJ Lazell <cjlazell@gmail.com>"
+
+au BufWriteCmd *.html,*.css,*.gtpl,*/views/**.php,*.coffee :call Refresh_firefox()
+function! Refresh_firefox()
+if &modified
+    write
+    silent !echo  'vimYo = content.window.pageYOffset;
+                 \ vimXo = content.window.pageXOffset;
+                 \ BrowserReload();
+                 \ content.window.scrollTo(vimXo,vimYo);
+                 \ repl.quit();'  |
+                 \ nc localhost 4242 2>&1 > /dev/null
+  endif
+endfunction
+
+function! Refresh_firefox_force()
+  write
+  silent !echo  'vimYo = content.window.pageYOffset;
+               \ vimXo = content.window.pageXOffset;
+               \ BrowserReload();
+               \ content.window.scrollTo(vimXo,vimYo);
+               \ repl.quit();'  |
+               \ nc localhost 4242 2>&1 > /dev/null
+endfunction
+
+map <C-r> :call Refresh_firefox_force()<CR>
