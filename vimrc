@@ -48,6 +48,10 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
+set noai                        " stop copying tabs
+
+" fix tabs
+map <F2> :set expandtab <CR> :retab <CR>
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -101,7 +105,11 @@ map <Leader>d :FufDir<Enter>
 "map <Leader>t :ConqueTerm zsh -l<Enter>
 map <Leader>f :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
-map <Leader>s :set expandtab<Enter>
+
+" toggle spelling on and off
+imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
+nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
+
 map <Leader>t> :Align =><Enter>
 noremap <silent> <c-l> :nohls<CR><c-l>
 
@@ -221,17 +229,17 @@ au FileType xml,html,xhtml let b:AutoClosePairs = {'<': '>', '?': '?', '(': ')',
   "let g:SuperTabDefaultCompletionType = "context"
   let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 " }
-  set history=1000  				" Store a ton of history (default is 20)
-  "set spell 		 	        	" spell checking on
+  set history=1000          " Store a ton of history (default is 20)
+  "set spell                " spell checking on
 
-  	" SnipMate {
-		" Setting the author var
-		let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
-		" Shortcut for reloading snippets, useful when developing
-		nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
-	" }
+    " SnipMate {
+    " Setting the author var
+    let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+    " Shortcut for reloading snippets, useful when developing
+    nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
+  " }
   " For when you forget to sudo.. Really Write the file.
-	cmap w!! w !sudo tee % >/dev/null
+  cmap w!! w !sudo tee % >/dev/null
 " }
 "
 let g:SuperTabMappingForward = "<leader><space>"
@@ -288,18 +296,21 @@ au BufWrite .vimrc source $MYVIMRC
 
 let g:pdv_cfg_Author = "CJ Lazell <cjlazell@gmail.com>"
 
-au BufWriteCmd *.html,*.css,*.gtpl,*/views/**.php,*.coffee :call Refresh_firefox()
-function! Refresh_firefox()
-if &modified
-    write
-    silent !echo  'vimYo = content.window.pageYOffset;
-                 \ vimXo = content.window.pageXOffset;
-                 \ BrowserReload();
-                 \ content.window.scrollTo(vimXo,vimYo);
-                 \ repl.quit();'  |
-                 \ nc localhost 4242 2>&1 > /dev/null
-  endif
-endfunction
+" Always retab and make sure we're using spaces and not tabs
+au BufWritePre * set et | retab
+
+" au BufWriteCmd *.html,*.css,*.gtpl,*/views/**.php,*.coffee :call Refresh_firefox()
+" function! Refresh_firefox()
+" if &modified
+"     write
+"     silent !echo  'vimYo = content.window.pageYOffset;
+"                  \\ vimXo = content.window.pageXOffset;
+"                  \\ BrowserReload();
+"                  \\ content.window.scrollTo(vimXo,vimYo);
+"                  \\ repl.quit();'  |
+"                  \\ nc localhost 4242 2>&1 > /dev/null
+"   endif
+" endfunction
 
 function! Refresh_firefox_force()
   write
@@ -312,3 +323,9 @@ function! Refresh_firefox_force()
 endfunction
 
 map <C-r> :call Refresh_firefox_force()<CR>
+
+" json syntax highlighting
+au! BufRead,BufNewFile *.json setfiletype json
+" .ejs support
+au BufNewFile,BufRead *.ejs set ft=html syntax=php
+au BufNewFile,BufRead */views/**.php set ft=html syntax=php

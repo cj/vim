@@ -1,23 +1,77 @@
 FINISH:
-  - supplement/re-inspection tab. add approve supplements to file section http://screencast.com/t/tPXZ2pZcGc (file icon means it waiting sup approval http://www.screencast.com/users/bnaze13/folders/Jing/media/8a3623c7-3f96-45fc-b1d2-42fc1e9d551b) LOOK AT detail_files.php like 93
-  - When you create a new supplement make sure to do an update.  Update snapshot and refresh claim files
-  - build something into the email this claim feature that sends and email to debug@autoclaimsdirect.com if it couldn't be sent
-  - Fix IE7 css issues
-  - Add a date_time_last_login field to the user table (we currently have user_action field)
-  - check all local updating works
+  - For notes if they are an appraiser don't allow them to remove CSR's
+  - Look for loader::modal and change it to api_process
+  - Look into client docs on the snapshot grabbing docs correctly
+  - CLIENT Notes on right limit characters to 100 with a view more button that shows a modal with the whole thing in and in printable detail page have a full section on the left instead of the right
+  - Create claim send to hyper quest
+  - printable detail page claim estimate wrong message, company name not showing. show numbers for people on this claim, numbers formatted !!!
+  - We need to handle todays tip for appraisers
+  - on language
+  - on add not when you click cancel or after you add a note refresh that section don't just hide it.
+  - add linked_type/linked_id to the email log
+  - add   else echo 'File Not Available.'; to zip and photo gallery
+  - Printable detail page make date time inspected 02/12/2011 @ 4:15pm CDT
+  - When you create a claim make it say successfully created claim not update
   - Missing division filter for claim queue swillhite (not all companies will have division)
-  - ADD TO USER QUICK CHANGE AS DIRECTOR - rudyaguilar -
+  - hook up email logging
+  - build something into the email this claim feature that sends and email to debug@autoclaimsdirect.com if it couldn't be sent
+  - need to make dollar signs below error and on the same level as the input http://screencast.com/t/UpgwxOGSo5Op
   - add benchmarking to client side
   - Look at search bar when browser is tiny
   - look at login css http://screencast.com/t/YCHhXs2U1
-  - fix when updating phone numbers it also re formats them http://screencast.com/t/HKMP0gXYP
   - flag claim as needing attention if they upload a file in COMPLETED status
+  - supplement/re-inspection tab. add approve supplements to file section http://screencast.com/t/tPXZ2pZcGc (file icon means it waiting sup approval http://www.screencast.com/users/bnaze13/folders/Jing/media/8a3623c7-3f96-45fc-b1d2-42fc1e9d551b) LOOK AT detail_files.php like 93
+  - email supplement (attachements)
+  - after email add history
+  - Dynamically update claim status @javascript
+  - Monitor supplement flag
+  - Fix IE7 css issues
+  - check all local updating works
+  - Add Time zone conversion for date_time_inspected
+  - Use form helpers for all inputs @done(2011-02-16)
+  - FIX EMS it's creating two tables @done(2011-02-16)
+  - add email logs to sending emails @done(2011-02-15)
+  - Get map is broken if no vehicle address, most liekly get directions is too @done(2011-02-15)
+  - Fix when translater is needed @done(2011-02-15)
+  - Remove address if it's the same as the owners @done(2011-02-15)
+  - Remove the supplement popup when uploading files in a non completed status @done(2011-02-15)
+  - Add trim() automatically to everything in the api @done(2011-02-14)
+  - modify appraiser profiles http://screencast.com/t/tbdeXgFPI @done(2011-02-14)
+  - check to see if a file is downloadable before showing link @done(2011-02-10)
+  - Add note section in accounting @done(2011-02-10)
+  - fix when updating phone numbers it also re formats them http://screencast.com/t/HKMP0gXYP @done(2011-02-10)
+  - Add date popup javascript for all summary estimate fields @done(2011-02-10)
+  - Add a field to summary estimate date_time_inspected other than desk review @done(2011-02-10)
+  - Add a date_time_last_login field to the user table (we currently have user_action field) @done(2011-02-09)
+  - Border on supplements table in summary missing border on left @done(2011-02-09)
+  - Inspection Site dropdown on summary REPAIRABLE form doesn't see to validate @done(2011-02-09)
+  - email_this_claim.php auto select company default in the dropdown @done(2011-02-09)
+  - Fix MY VIEW won't select status with a space in it @done(2011-02-09)
+  - Add download icon with tooltip download now @done(2011-02-09)
+  - Add PRODUCTION STATUS for javascript @done(2011-02-09)
+  - fix uploader icons http://screencast.com/t/B7yVFjiPr @done(2011-02-08)
+  - fix after_delete @done(2011-02-08)
+  - ADD TO USER QUICK CHANGE AS DIRECTOR - rudyaguilar - @done(2011-02-08)
+  - Check to see why http://www.screencast.com/users/bnaze13/folders/Jing/media/dced075a-606c-4418-807a-74798d7ccf4e still shows with 0 supplements @done(2011-02-08)
+  - Fix the speed of supplement delete @done(2011-02-08)
+  - Before uploading ask if it's a supplement? @done(2011-02-08)
+  - Tasks folder, type var if false grab default type from company, linked, linked type @done(2011-02-07)
+  - When you create a new supplement make sure to do an update.  Update snapshot and refresh claim files @done(2011-02-07)
   - Fix pdf photo gallery @done(2011-02-06)
   - Fix blank page in photo gallery pdf @done(2011-02-06)
   - email this claim @done(2011-02-06)
 
+QUESTIONS:
+  - Make status changed to claim not re-set date_time_completed
 BUGS:
-  -
 
 IDEAS:
   - we'll need to write some scripts eventually that disable users who haven't logged in for a long period of time
+  - Erica H. Pls create a feature that can be accessed frm inside any file called additional billing - I have found many files that were never billed bc our supplement dept forgot to bill a file & pay an appr add'l $ because they have no way to monitor those files. I monitor them by opening another tab in my browser, but not everyone does that and that can clutter the desktop afterawhile. this will help us stop losing $
+
+MUSIC:
+  - Dispatch
+
+TODO:
+  - Phone all the schools ask to be a paid guest speaker teaching the kids a few classes about auditioning in LA @lauren
+  - CALL Hayley - 01252 820 244
