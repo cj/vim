@@ -1,5 +1,7 @@
 FINISH:
   - For notes if they are an appraiser don't allow them to remove CSR's
+  - on add not when you click cancel or after you add a note refresh that section don't just hide it.
+  - FIX EMS it's creating two tables
   - Look for loader::modal and change it to api_process
   - Look into client docs on the snapshot grabbing docs correctly
   - CLIENT Notes on right limit characters to 100 with a view more button that shows a modal with the whole thing in and in printable detail page have a full section on the left instead of the right
@@ -7,7 +9,6 @@ FINISH:
   - printable detail page claim estimate wrong message, company name not showing. show numbers for people on this claim, numbers formatted !!!
   - We need to handle todays tip for appraisers
   - on language
-  - on add not when you click cancel or after you add a note refresh that section don't just hide it.
   - add linked_type/linked_id to the email log
   - add   else echo 'File Not Available.'; to zip and photo gallery
   - Printable detail page make date time inspected 02/12/2011 @ 4:15pm CDT
@@ -29,7 +30,6 @@ FINISH:
   - check all local updating works
   - Add Time zone conversion for date_time_inspected
   - Use form helpers for all inputs @done(2011-02-16)
-  - FIX EMS it's creating two tables @done(2011-02-16)
   - add email logs to sending emails @done(2011-02-15)
   - Get map is broken if no vehicle address, most liekly get directions is too @done(2011-02-15)
   - Fix when translater is needed @done(2011-02-15)

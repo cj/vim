@@ -58,3 +58,6 @@
 [submodule "bundle/taskpaper"]
 	path = bundle/taskpaper
 	url = https://github.com/davidoc/taskpaper.vim.git
+[submodule "bundle/jquery"]
+	path = bundle/jquery
+	url = https://github.com/itspriddle/vim-jquery.git
