@@ -27,3 +27,7 @@ set ch=3                         " Stops vim asking you to continue every time
 " nmap <C-l> : tabnext<cr>
 " vmap <C-h> : tabprevious<cr>
 " vmap <C-l> : tabnext<cr>
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
+set expandtab                    " Use spaces instead of tabs
+set noai                        " stop copying tabs

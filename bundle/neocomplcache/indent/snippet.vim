@@ -31,8 +31,8 @@ endif
 let b:did_indent = 1
 
 setlocal expandtab
-setlocal shiftwidth=4
-setlocal softtabstop=4
+setlocal shiftwidth=2
+setlocal softtabstop=2
 if !exists('b:undo_indent')
     let b:undo_indent = ''
 endif
