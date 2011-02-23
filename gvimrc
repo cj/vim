@@ -60,7 +60,7 @@ function StartTerm()
 endfunction
 
 " Project Tree
-autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+" autocmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
 autocmd FocusGained * call s:UpdateNERDTree()
 autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
 

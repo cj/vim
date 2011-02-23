@@ -257,10 +257,10 @@ let g:loaded_netrw       = 1 " Disable netrw
 let g:loaded_netrwPlugin = 1 " Disable netrw
 
 " Next, add this to your .vimrc
-" au VimEnter * :NERDTreeToggle
-" au VimEnter * :wincmd p
-" " au VimEnter * :set wrap linebreak nolist
-" au VimEnter * :set wrap nolist
+au VimEnter * :NERDTreeToggle
+au VimEnter * :wincmd p
+" au VimEnter * :set wrap linebreak nolist
+au VimEnter * :set wrap nolist
 
 " map <Leader>w :set wrap linebreak nolist<Enter>
 map <Leader>w :set wrap nolist<Enter>
@@ -382,6 +382,23 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+" set Cmd-# and Alt-# to switch tabs
+" for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+"     let k = n == "0" ? "10" : n
+"     for m in ["A", "D"]
+"         exec printf("imap <silent> <%s-%s> <Esc>:tabn %s<CR>", m, n, k)
+"         exec printf("nmap <silent> <%s-%s> %sgt<CR>", m, n, k)
+"     endfor
+" endfor
+
+for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    let k = n == "0" ? "10" : n
+    for m in ["<C-w>"]
+        exec printf("imap <silent> %s%s <Esc>%s%sa", m, n, m, n)
+        exec printf("nmap <silent> %s%s :%swincmd w<CR>", m, n, k)
+    endfor
+endfor
+
 " set Cmd-# and Alt-# to switch windows
 for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     let k = n == "0" ? "10" : n
@@ -390,3 +407,5 @@ for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         exec printf("nmap <silent> <%s-%s> :%swincmd w<CR>", m, n, k)
     endfor
 endfor
+
+set splitbelow splitright
