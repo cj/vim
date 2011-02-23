@@ -2,6 +2,8 @@ To use:
 
 INSTALL USING: sudo port install macvim +ruby +python
 
+RUN ctags -R in your terminal project directory once and a awhile then you can do ctrl g+] to jump to that tag
+
 * Copy the dotvim-basic or dotvim-full-featured directory to ~/.vim
 * Symlink the vimrc and gvimrc files to ~/.vimrc and ~/.gvimrc
 

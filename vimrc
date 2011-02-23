@@ -48,7 +48,8 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
-set noai                        " stop copying tabs
+set list listchars=tab:\ \ ,trail:·
+"set noai                        " stop copying tabs
 
 " fix tabs
 map <F2> :set expandtab <CR> :retab <CR>
@@ -139,8 +140,9 @@ nnoremap <silent> <F10> zR
 nnoremap <silent> <F11> zM
 
 map <F8> <Esc>:EnableFastPHPFolds<Cr>
-" Refreshes ctrl + t file search
+" Refreshes ctrl + t file search with f+12 and on new file creation
 map <special> <F12> :ruby finder.rescan!<ENTER>
+au BufNewFile :ruby finder.rescan!<ENTER>
 
 set undofile
 " set undodir .
@@ -255,10 +257,10 @@ let g:loaded_netrw       = 1 " Disable netrw
 let g:loaded_netrwPlugin = 1 " Disable netrw
 
 " Next, add this to your .vimrc
-au VimEnter * :NERDTreeToggle
-au VimEnter * :wincmd p
-" au VimEnter * :set wrap linebreak nolist
-au VimEnter * :set wrap nolist
+" au VimEnter * :NERDTreeToggle
+" au VimEnter * :wincmd p
+" " au VimEnter * :set wrap linebreak nolist
+" au VimEnter * :set wrap nolist
 
 " map <Leader>w :set wrap linebreak nolist<Enter>
 map <Leader>w :set wrap nolist<Enter>
@@ -329,3 +331,62 @@ au! BufRead,BufNewFile *.json setfiletype json
 " .ejs support
 au BufNewFile,BufRead *.ejs set ft=html syntax=php
 au BufNewFile,BufRead */views/**.php set ft=html syntax=php
+autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
+
+" Tab completion
+set wildmode=list:longest,list:full
+" Ignore certain files on complete
+set wildignore+=.git
+
+" Ignore .gitignore files
+let filename = '.gitignore'
+if filereadable(filename)
+    let igstring = ''
+    for oline in readfile(filename)
+        let line = substitute(oline, '\s|\n|\r', '', "g")
+        if line =~ '^#' | con | endif
+        if line == '' | con  | endif
+        if line =~ '^!' | con  | endif
+        if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+        let igstring .= "," . line
+    endfor
+    let execstring = "set wildignore+=".substitute(igstring, '^,', '', "g")
+    execute execstring
+endif
+
+" Zoom/focus into window
+map <C-z> :ZoomWin<cr>
+
+" CTags
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+map <C-]> <CR> g<C-]><CR>
+
+command! Trail :%s/\s\+$//g
+au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+" Enable syntastic syntax checking
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+
+" Use modeline overrides
+set modeline
+set modelines=10
+
+" Directories for swp files
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
+" Remember last location in file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+" set Cmd-# and Alt-# to switch windows
+for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    let k = n == "0" ? "10" : n
+    for m in ["A", "D"]
+        exec printf("imap <silent> <%s-%s> <Esc><%s-%s>a", m, n, m, n)
+        exec printf("nmap <silent> <%s-%s> :%swincmd w<CR>", m, n, k)
+    endfor
+endfor

@@ -1,34 +1,66 @@
+TODO:
+  - Phone all the schools ask to be a paid guest speaker teaching the kids a few classes about auditioning in LA @lauren
+  - CALL Hayley - 01252 820 244
+  - UPDATE TIMEKEEPING TO KEEP THE PREVIOUS YEAR OF VACATION @ACD_admin
+  - Tell poodle to check EMS
+
+QUESTIONS:
+  - Make status changed to claim not re-set date_time_completed
+
+BUGS:
+
+IDEAS:
+  - we'll need to write some scripts eventually that disable users who haven't logged in for a long period of time
+  - Erica H. Pls create a feature that can be accessed frm inside any file called additional billing - I have found many files that were never billed bc our supplement dept forgot to bill a file & pay an appr add'l $ because they have no way to monitor those files. I monitor them by opening another tab in my browser, but not everyone does that and that can clutter the desktop afterawhile. this will help us stop losing $
+
+TOOLS:
+  - GENERATE CSS SPRITES - http://css.spritegen.com/
+  - ICONS - http://www.iconsweets2.com/
+  - Generate images from PDFs/ Turn any document into a PDF/extract any text from pdf! - http://documentcloud.github.com/docsplit/
+
+MUSIC:
+  - Dispatch
+
 FINISH:
-  - For notes if they are an appraiser don't allow them to remove CSR's
-  - on add not when you click cancel or after you add a note refresh that section don't just hide it.
-  - FIX EMS it's creating two tables
-  - Look for loader::modal and change it to api_process
-  - Look into client docs on the snapshot grabbing docs correctly
-  - CLIENT Notes on right limit characters to 100 with a view more button that shows a modal with the whole thing in and in printable detail page have a full section on the left instead of the right
-  - Create claim send to hyper quest
-  - printable detail page claim estimate wrong message, company name not showing. show numbers for people on this claim, numbers formatted !!!
-  - We need to handle todays tip for appraisers
-  - on language
-  - add linked_type/linked_id to the email log
-  - add   else echo 'File Not Available.'; to zip and photo gallery
-  - Printable detail page make date time inspected 02/12/2011 @ 4:15pm CDT
-  - When you create a claim make it say successfully created claim not update
+  - PRINTABLE DETAIL PAGE
+    - claim estimate wrong message, company name not showing. show numbers for people on this claim, numbers formatted !!!  @done(2011-02-18)
+    - make date time inspected 02/12/2011 @ 4:15pm CDT - http://blog.boxedice.com/2009/03/21/handling-timezone-conversion-with-php-datetime/ - Get the local time using javascript date= new Date().toTimeString(); date.match(/[A-Z]{3}(?!\-)/)[0]; - use the .getTimezoneOffset() method on the client time, convert your server time to GMT, subtract one from the other.
+  - FILE UPLOAD - Add history item saying how many files were uploaded.
   - Missing division filter for claim queue swillhite (not all companies will have division)
-  - hook up email logging
-  - build something into the email this claim feature that sends and email to debug@autoclaimsdirect.com if it couldn't be sent
-  - need to make dollar signs below error and on the same level as the input http://screencast.com/t/UpgwxOGSo5Op
-  - add benchmarking to client side
+  - when creating a claim i think we just need a popup if the claim # already exists saying… there's already a claim w/ this info: vehicle: blah blah blah, owner: blah blah, ect are you sure you want to create this claim?
+  - EMAIL
+    - add linked_type/linked_id to the email log
+    - (CHECK THE NEW ERROR CATCHING HANDLES THIS) build something into the email this claim feature that sends and email to debug@autoclaimsdirect.com if it couldn't be sent
+    - email supplement (attachements)
+    - after email add history
+  - Look into client docs on the snapshot grabbing docs correctly
+  - make download icon force download and make name clickable and open in browser (stream)
+  - We need to handle todays tip for appraisers
+  .show()- When you create a claim make it say successfully created claim not update
   - Look at search bar when browser is tiny
   - look at login css http://screencast.com/t/YCHhXs2U1
   - flag claim as needing attention if they upload a file in COMPLETED status
   - supplement/re-inspection tab. add approve supplements to file section http://screencast.com/t/tPXZ2pZcGc (file icon means it waiting sup approval http://www.screencast.com/users/bnaze13/folders/Jing/media/8a3623c7-3f96-45fc-b1d2-42fc1e9d551b) LOOK AT detail_files.php like 93
-  - email supplement (attachements)
-  - after email add history
   - Dynamically update claim status @javascript
   - Monitor supplement flag
   - Fix IE7 css issues
   - check all local updating works
   - Add Time zone conversion for date_time_inspected
+  - need to make dollar signs below error and on the same level as the input http://screencast.com/t/UpgwxOGSo5Op
+  - add benchmarking to client side
+  - Add status filter to the filters in view claim @done(2011-02-22)
+  - CLIENT Notes on right limit characters to 100 with a view more button that shows a modal with the whole thing in and in printable detail page have a full section on the left instead of the right @done(2011-02-18)
+  - Look for loader::modal and change it to api_process @done(2011-02-18)
+  - Create claim send to hyper quest @done(2011-02-18)
+  - INVOICE @done(2011-02-18)
+    - When editing an invoice it needs to re generate the pdf and replace the old file @done(2011-02-18)
+    - exec generating an invoice for the accounting @done(2011-02-17)
+  - FIX EMS it's creating two tables make sure it creates an estimate if one isn't there @done(2011-02-17)
+  - add else echo 'File Not Available.'; to zip and photo gallery @done(2011-02-17)
+  - hook up email logging @done(2011-02-16)
+  - Move the drag & drop message to only show when you click add files http://screencast.com/t/kUIk902DQX2X @done(2011-02-16)
+  - on add not when you click cancel or after you add a note refresh that section don't just hide it. @done(2011-02-16)
+  - For notes if they are an appraiser don't allow them to remove CSR's @done(2011-02-16)
   - Use form helpers for all inputs @done(2011-02-16)
   - add email logs to sending emails @done(2011-02-15)
   - Get map is broken if no vehicle address, most liekly get directions is too @done(2011-02-15)
@@ -60,18 +92,3 @@ FINISH:
   - Fix pdf photo gallery @done(2011-02-06)
   - Fix blank page in photo gallery pdf @done(2011-02-06)
   - email this claim @done(2011-02-06)
-
-QUESTIONS:
-  - Make status changed to claim not re-set date_time_completed
-BUGS:
-
-IDEAS:
-  - we'll need to write some scripts eventually that disable users who haven't logged in for a long period of time
-  - Erica H. Pls create a feature that can be accessed frm inside any file called additional billing - I have found many files that were never billed bc our supplement dept forgot to bill a file & pay an appr add'l $ because they have no way to monitor those files. I monitor them by opening another tab in my browser, but not everyone does that and that can clutter the desktop afterawhile. this will help us stop losing $
-
-MUSIC:
-  - Dispatch
-
-TODO:
-  - Phone all the schools ask to be a paid guest speaker teaching the kids a few classes about auditioning in LA @lauren
-  - CALL Hayley - 01252 820 244

@@ -1,63 +1,72 @@
 [submodule "bundle/ack"]
-	path = bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
+  path = bundle/ack
+  url = https://github.com/mileszs/ack.vim.git
 [submodule "bundle/gist-vim"]
-	path = bundle/gist-vim
-	url = http://github.com/mattn/gist-vim.git
+  path = bundle/gist-vim
+  url = http://github.com/mattn/gist-vim.git
 [submodule "bundle/delimitMate"]
-	path = bundle/delimitMate
-	url = http://github.com/Raimondi/delimitMate.git
+  path = bundle/delimitMate
+  url = http://github.com/Raimondi/delimitMate.git
 [submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
+  path = bundle/nerdcommenter
+  url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = http://github.com/spf13/nerdtree.git
+  path = bundle/nerdtree
+  url = http://github.com/spf13/nerdtree.git
 [submodule "bundle/supertab"]
-	path = bundle/supertab
-	url = git://github.com/ervandew/supertab.git
+  path = bundle/supertab
+  url = git://github.com/ervandew/supertab.git
 [submodule "bundle/vim-fugitive"]
-	path = bundle/vim-fugitive
-	url = http://github.com/tpope/vim-fugitive.git
+  path = bundle/vim-fugitive
+  url = http://github.com/tpope/vim-fugitive.git
 [submodule "bundle/vim-git"]
-	path = bundle/vim-git
-	url = https://github.com/tpope/vim-git.git
+  path = bundle/vim-git
+  url = https://github.com/tpope/vim-git.git
 [submodule "bundle/vim-coffee-script"]
-	path = bundle/vim-coffee-script
-	url = git://github.com/kchmck/vim-coffee-script.git
+  path = bundle/vim-coffee-script
+  url = git://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/vim-ragtag"]
-	path = bundle/vim-ragtag
-	url = http://github.com/tpope/vim-ragtag.git
+  path = bundle/vim-ragtag
+  url = http://github.com/tpope/vim-ragtag.git
 [submodule "bundle/vim-rails"]
-	path = bundle/vim-rails
-	url = https://github.com/tpope/vim-rails.git
+  path = bundle/vim-rails
+  url = https://github.com/tpope/vim-rails.git
 [submodule "bundle/vim-tcomment"]
-	path = bundle/vim-tcomment
-	url = https://github.com/tsaleh/vim-tcomment.git
+  path = bundle/vim-tcomment
+  url = https://github.com/tsaleh/vim-tcomment.git
 [submodule "bundle/checksyntax"]
-	path = bundle/checksyntax
-	url = https://github.com/tomtom/checksyntax_vim.git
+  path = bundle/checksyntax
+  url = https://github.com/tomtom/checksyntax_vim.git
 [submodule "bundle/github"]
-	path = bundle/github
-	url = https://github.com/TimothyKlim/github-vim.git
+  path = bundle/github
+  url = https://github.com/TimothyKlim/github-vim.git
 [submodule "bundle/phpdoc"]
-	path = bundle/phpdoc
-	url = https://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git
+  path = bundle/phpdoc
+  url = https://github.com/vim-scripts/PDV--phpDocumentor-for-Vim.git
 [submodule "bundle/php-folding"]
-	path = bundle/php-folding
-	url = https://github.com/shemerey/vim-phpfolding.git
+  path = bundle/php-folding
+  url = https://github.com/shemerey/vim-phpfolding.git
 [submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
+  path = bundle/snipmate
+  url = https://github.com/msanders/snipmate.vim.git
 [submodule "bundle/vim-unimpaired"]
-	path = bundle/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
+  path = bundle/vim-unimpaired
+  url = https://github.com/tpope/vim-unimpaired.git
 [submodule "bundle/vim-syntax-todo"]
-	path = bundle/vim-syntax-todo
-	url = https://github.com/trapd00r/vim-syntax-todo.git
+  path = bundle/vim-syntax-todo
+  url = https://github.com/trapd00r/vim-syntax-todo.git
 [submodule "bundle/taskpaper"]
-	path = bundle/taskpaper
-	url = https://github.com/davidoc/taskpaper.vim.git
+  path = bundle/taskpaper
+  url = https://github.com/davidoc/taskpaper.vim.git
 [submodule "bundle/jquery"]
-	path = bundle/jquery
-	url = https://github.com/itspriddle/vim-jquery.git
+  path = bundle/jquery
+  url = https://github.com/itspriddle/vim-jquery.git
+[submodule "bundle/javascript"]
+	path = bundle/javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule "bundle/zoomwin"]
+	path = bundle/zoomwin
+	url = https://github.com/vim-scripts/ZoomWin.git
+[submodule "bundle/fuzzy_finder_textmate"]
+	path = bundle/fuzzy_finder_textmate
+	url = https://github.com/axold/fuzzyfinder_textmate.git
