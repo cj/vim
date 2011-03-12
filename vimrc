@@ -275,6 +275,7 @@ let g:gist_detect_filetype = 1
 
 let g:gist_open_browser_after_post = 0
 map <F3> v<Plug>GithubOpen<ESC>
+map <F4> v:Gist -p<ESC>
 
 " let php_sql_query=1 " to highlight SQL syntax in strings
 " let php_htmlInStrings=1 " to highlight HTML in string
