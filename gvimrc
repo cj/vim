@@ -10,7 +10,8 @@ set guioptions-=T                 " Hide toolbar.
 set background=dark
 set lines=40 columns=100          " Window dimensions.
 set ch=3                         " Stops vim asking you to continue every time
-
+highlight Pmenu ctermfg=1 ctermbg=2 guibg=#003652
+" highlight Pmenu ctermfg=1 ctermbg=2 guibg=#004669
 "set guioptions-=r                " Don't show right scrollbar
 
 " PHP Specific options. Yay!
@@ -40,7 +41,7 @@ if has("gui_macvim")
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
 
   " Command-Shift-F for Ack
-  map <D-F> :Ack<space>
+  map <D-F> :Ack<space>""<Left>
 
   " Command-e for ConqueTerm
   map <D-e> :call StartTerm()<CR>
@@ -115,6 +116,7 @@ function s:UpdateNERDTree(...)
     if nr != -1
       exe nr . "wincmd w"
       exe substitute(mapcheck("R"), "<CR>", "", "")
+      ruby finder.rescan!
       if !stay
         wincmd p
       end

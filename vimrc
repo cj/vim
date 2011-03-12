@@ -48,7 +48,7 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set tabstop=2                    " Global tab width.
 set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
-set list listchars=tab:\ \ ,trail:·
+" set list listchars=tab:\ \ ,trail:·
 "set noai                        " stop copying tabs
 
 " fix tabs
@@ -127,6 +127,7 @@ com! Php  set ft=php<ENTER>set syntax=php
 map <Leader>h :set ft=html syntax=php<ENTER>
 map <Leader>p :set ft=php syntax=php<ENTER>
 map <Leader>a :setf apache<ENTER>
+map <Leader>m :set ft=sql syntax=sql<ENTER>
 
 " Press F9 to open/close folds
 inoremap <silent> <F9> <C-O>za
@@ -144,24 +145,21 @@ map <F8> <Esc>:EnableFastPHPFolds<Cr>
 map <special> <F12> :ruby finder.rescan!<ENTER>
 au BufNewFile :ruby finder.rescan!<ENTER>
 
-set undofile
-" set undodir .
-
 " CoffeScript
 " Disable error for spacing
 let coffee_no_trailing_space_error = 1
 
-set history=50 " keep track of last commands
+set history=1000 " keep track of last commands
 
 " enable visible whitespace
 set listchars=tab:»·,trail:·,precedes:<,extends:>
-set list
+" set list
 
 "
 " Enable spellchecking conditionally
 "
-map <Leader>se :setlocal spell spelllang=en_us<CR>
-map <Leader>sn :setlocal nospell<CR>
+" map <Leader>se :setlocal spell spelllang=en_us<CR>
+" map <Leader>sn :setlocal nospell<CR>
 
 "
 " Configure Neocomplcache
@@ -265,7 +263,7 @@ au VimEnter * :set wrap nolist
 " map <Leader>w :set wrap linebreak nolist<Enter>
 map <Leader>w :set wrap nolist<Enter>
 " Compile coffee files on save
-au BufWrite *.coffee !coffee -c %:p
+au BufWritePre *.coffee !coffee -c %:p
 " Always open files in \"Edit Anyway\"
 set shortmess+=A
 
@@ -275,13 +273,17 @@ let g:gist_clip_command = 'pbcopy'
 " Detect FileType from FileName
 let g:gist_detect_filetype = 1
 
+let g:gist_open_browser_after_post = 0
+map <F3> v<Plug>GithubOpen<ESC>
+
 " let php_sql_query=1 " to highlight SQL syntax in strings
 " let php_htmlInStrings=1 " to highlight HTML in string
 
 " Press ,v to edit vimrc
 map <leader>ev :tabedit $MYVIMRC<CR>
 " TODO list
-map <Leader>t :tabedit $HOME/.vim/TODO.taskpaper<ENTER>
+map <Leader>t :edit $HOME/.vim/TODO.taskpaper<ENTER>
+map <Leader>ms :edit $HOME/.vim/mysql.sql<ENTER>
 
 " Bubble single lines
 nmap <C-Up> [e
@@ -294,7 +296,7 @@ vmap <C-Down> ]egv
 nmap gV `[v`]
 
 " Source the vimrc file after saving it
-au BufWrite .vimrc source $MYVIMRC
+au BufWritePre .vimrc source $MYVIMRC
 
 let g:pdv_cfg_Author = "CJ Lazell <cjlazell@gmail.com>"
 
@@ -331,35 +333,37 @@ au! BufRead,BufNewFile *.json setfiletype json
 " .ejs support
 au BufNewFile,BufRead *.ejs set ft=html syntax=php
 au BufNewFile,BufRead */views/**.php set ft=html syntax=php
-autocmd BufRead,BufNewFile *.js set ft=javascript syntax=jquery
+au BufNewFile,BufRead *.js set ft=javascript syntax=jquery
+" au BufNewFile,BufRead *.sql set ft=sql syntax=sql
+let g:sql_type_default = 'mysql'
+let omni_sql_default_compl_type = 'syntax'
 
 " Tab completion
 set wildmode=list:longest,list:full
 " Ignore certain files on complete
-set wildignore+=.git
+set wildignore+=.git,*.gif,*.png,*.jpg,*.jpeg,tags,*.pdf
 
 " Ignore .gitignore files
-let filename = '.gitignore'
-if filereadable(filename)
-    let igstring = ''
-    for oline in readfile(filename)
-        let line = substitute(oline, '\s|\n|\r', '', "g")
-        if line =~ '^#' | con | endif
-        if line == '' | con  | endif
-        if line =~ '^!' | con  | endif
-        if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
-        let igstring .= "," . line
-    endfor
-    let execstring = "set wildignore+=".substitute(igstring, '^,', '', "g")
-    execute execstring
-endif
+" let filename = '.gitignore'
+" if filereadable(filename)
+"     let igstring = ''
+"     for oline in readfile(filename)
+"         let line = substitute(oline, '\\s|\\n|\\r', '', "g")
+"         if line =~ '^#' | con | endif
+"         if line == '' | con  | endif
+"         if line =~ '^!' | con  | endif
+"         if line =~ '/$' | let igstring .= "," . line . "*" | con | endif
+"         let igstring .= "," . line
+"     endfor
+"     let execstring = "set wildignore+=".substitute(igstring, '^,', '', "g")
+"     execute execstring
+" endif
 
 " Zoom/focus into window
-map <C-z> :ZoomWin<cr>
+map <C-z> :ZoomWin<cr><C-w>=
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-]> <CR> g<C-]><CR>
 
 command! Trail :%s/\s\+$//g
 au BufRead,BufNewFile *.txt call s:setupWrapping()
@@ -375,6 +379,13 @@ set modelines=10
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
+
+set undodir=~/.vim/undodir
+set undofile
+"maximum number of changes that can be undone
+set undolevels=1000
+"maximum number lines to save for undo on a buffer reload
+set undoreload=10000
 
 " Remember last location in file
 if has("autocmd")
@@ -409,3 +420,15 @@ for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 endfor
 
 set splitbelow splitright
+
+" DATABASE DEFAULTS
+let g:dbext_default_type   = 'mysql'
+let g:dbext_default_user   = 'root'
+let g:dbext_default_passwd = 'pass'
+let g:dbext_default_host   = '127.0.0.1'
+let g:dbext_default_dbname = 'acd'
+
+map <Leader>sd :DBSetOption dbname=
+
+" Ignore files in fuzzy finder
+let g:fuzzy_ignore = '*.gif,*.jpg,*.png,*.jpeg,tags,*.pdf'
