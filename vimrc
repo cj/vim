@@ -76,6 +76,9 @@ colorscheme twilight
 
 " Tab mappings.
 " map <leader>tn :tabnew<cr>
+map <leader>ss :mksession! current_session<cr>
+map <leader>sl :so current_session<cr>
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
 set t_Co=256
 map <leader>to :tabnew<cr>
 " map <leader>te :tabedit
@@ -106,9 +109,9 @@ map <Leader>d :FufDir<Enter>
 "map <Leader>t :ConqueTerm zsh -l<Enter>
 map <Leader>f :TlistToggle<Enter>
 map <Leader>r :MRU<Enter>
-
+map <D-R> :!php %<Enter>
 " toggle spelling on and off
-imap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
+vmap <Leader>s <C-o>:setlocal spell! spelllang=en_us<CR>
 nmap <Leader>s :setlocal spell! spelllang=en_us<CR>
 
 map <Leader>t> :Align =><Enter>
@@ -116,7 +119,7 @@ noremap <silent> <c-l> :nohls<CR><c-l>
 
 
 " Rainbows!
-nmap <leader>R :RainbowParenthesesToggle<CR>
+" nmap <leader>R :RainbowParenthesesToggle<CR>
 
 " Quick switch syntax
 " com! Html set ft=html
@@ -139,6 +142,28 @@ vnoremap <silent> <F9> zf
 nnoremap <silent> <F10> zR
 " Press F10 close all folds
 nnoremap <silent> <F11> zM
+
+" Show code tags
+nnoremap <silent> <F7> :TagbarToggle<CR>
+let g:tagbar_width = 30
+let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+let g:tagbar_autoshowtag = 1
+let g:tagbar_type_coffee = {
+      \ 'ctagstype' : 'coffee',
+      \ 'kinds' : [
+          \ 'f:functions',
+          \ 'v:variables'
+      \ ]
+  \ }
+let g:tagbar_type_php = {
+    \ 'ctagstype' : 'php',
+    \ 'kinds' : [
+        \ 'c:classes',
+        \ 'f:functions',
+    \ ]
+\ }
 
 map <F8> <Esc>:EnableFastPHPFolds<Cr>
 " Refreshes ctrl + t file search with f+12 and on new file creation
@@ -234,7 +259,7 @@ au FileType xml,html,xhtml let b:AutoClosePairs = {'<': '>', '?': '?', '(': ')',
 
     " SnipMate {
     " Setting the author var
-    let g:snips_author = 'Steve Francia <steve.francia@gmail.com>'
+    let g:snips_author = 'CJ Lazell <cjlazell@gmail.com>'
     " Shortcut for reloading snippets, useful when developing
     nnoremap ,smr <esc>:exec ReloadAllSnippets()<cr>
   " }
@@ -274,8 +299,8 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
 
 let g:gist_open_browser_after_post = 0
-map <F3> v<Plug>GithubOpen<ESC>
-map <F4> v:Gist -p<ESC>
+map <F3> <Plug>GithubOpen<ESC>
+map <F4> :Gist -p<ESC>
 
 " let php_sql_query=1 " to highlight SQL syntax in strings
 " let php_htmlInStrings=1 " to highlight HTML in string
@@ -384,9 +409,9 @@ set directory=~/.vim/backup
 set undodir=~/.vim/undodir
 set undofile
 "maximum number of changes that can be undone
-set undolevels=1000
+set undolevels=99999
 "maximum number lines to save for undo on a buffer reload
-set undoreload=10000
+set undoreload=99999
 
 " Remember last location in file
 if has("autocmd")
@@ -404,32 +429,85 @@ endif
 " endfor
 
 for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    let k = n == "0" ? "10" : n
-    for m in ["<C-w>"]
-        exec printf("imap <silent> %s%s <Esc>%s%sa", m, n, m, n)
-        exec printf("nmap <silent> %s%s :%swincmd w<CR>", m, n, k)
-    endfor
+  let k = n == "0" ? "10" : n
+  for m in ["<C-w>"]
+    exec printf("imap <silent> %s%s <Esc>%s%sa", m, n, m, n)
+    exec printf("nmap <silent> %s%s :%swincmd w<CR>", m, n, k)
+  endfor
 endfor
 
 " set Cmd-# and Alt-# to switch windows
 for n in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    let k = n == "0" ? "10" : n
-    for m in ["A", "D"]
-        exec printf("imap <silent> <%s-%s> <Esc><%s-%s>a", m, n, m, n)
-        exec printf("nmap <silent> <%s-%s> :%swincmd w<CR>", m, n, k)
-    endfor
+  let k = n == "0" ? "10" : n
+  for m in ["A", "D"]
+    exec printf("imap <silent> <%s-%s> <Esc><%s-%s>a", m, n, m, n)
+    exec printf("nmap <silent> <%s-%s> :%swincmd w<CR>", m, n, k)
+  endfor
 endfor
 
 set splitbelow splitright
 
 " DATABASE DEFAULTS
-let g:dbext_default_type   = 'mysql'
+let g:dbext_default_type   = 'MYSQL'
 let g:dbext_default_user   = 'root'
 let g:dbext_default_passwd = 'pass'
 let g:dbext_default_host   = '127.0.0.1'
 let g:dbext_default_dbname = 'acd'
 
 map <Leader>sd :DBSetOption dbname=
+map <Leader>sr :sel<Enter>
 
 " Ignore files in fuzzy finder
 let g:fuzzy_ignore = '*.gif,*.jpg,*.png,*.jpeg,tags,*.pdf'
+
+let g:calendar_diary="~/.vim/diary"
+" Show calendar
+map <Leader>c :Calendar<Enter>
+" map zencoding to ctrl e
+imap <c-e> <c-y>,
+" Start weeken on a monday
+let g:calendar_monday = 1
+" Show 6 calendars
+let g:calendar_total_months=6
+
+nnoremap ,/ :M/
+nnoremap ,? :M?
+
+" Track indent levels
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=grey30   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=grey30   ctermbg=4
+
+" Tell vim to remember certain things when we exit
+"  '10 : marks will be remembered for up to 10 previously edited files
+"  "100 : will save up to 100 lines for each register
+"  :20 : up to 20 lines of command-line history will be remembered
+"  % : saves and restores the buffer list
+"  n... : where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+" when we reload, tell vim to restore the cursor to the saved position
+augroup JumpCursorOnEdit
+ au!
+ autocmd BufReadPost *
+ \ if expand("<afile>:p:h") !=? $TEMP |
+ \ if line("'\"") > 1 && line("'\"") <= line("$") |
+ \ let JumpCursorOnEdit_foo = line("'\"") |
+ \ let b:doopenfold = 1 |
+ \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+ \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+ \ let b:doopenfold = 2 |
+ \ endif |
+ \ exe JumpCursorOnEdit_foo |
+ \ endif |
+ \ endif
+ " Need to postpone using "zv" until after reading the modelines.
+ autocmd BufWinEnter *
+ \ if exists("b:doopenfold") |
+ \ exe "normal zv" |
+ \ if(b:doopenfold > 1) |
+ \ exe "+".1 |
+ \ endif |
+ \ unlet b:doopenfold |
+ \ endif
+augroup END

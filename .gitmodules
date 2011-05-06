@@ -70,3 +70,18 @@
 [submodule "bundle/fuzzy_finder_textmate"]
 	path = bundle/fuzzy_finder_textmate
 	url = https://github.com/axold/fuzzyfinder_textmate.git
+[submodule "bundle/zencoding"]
+	path = bundle/zencoding
+	url = https://github.com/mattn/zencoding-vim.git
+[submodule "bundle/regex"]
+	path = bundle/regex
+	url = https://github.com/othree/eregex.vim
+[submodule "bundle/vim-colors-solarized.git"]
+	path = bundle/vim-colors-solarized.git
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/visual-indents"]
+	path = bundle/visual-indents
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "bundle/Tagbar"]
+	path = bundle/Tagbar
+	url = git://github.com/majutsushi/tagbar

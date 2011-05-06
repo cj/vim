@@ -5,3 +5,9 @@
 .netrwhist
 *conflicted*
 tags
+mysql.sql
+*.taskpaper*
+/diary
+/backup
+ctags
+/undodir
